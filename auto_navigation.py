@@ -19,9 +19,8 @@ def avoid_obstacle():
     car.stop()
     time.sleep(0.5)
 
-    # Back up slightly
-    car.speed = 40
-    car.run_backward()
+    # Back up at reduced speed
+    car.run_backward(40)  # Pass speed directly instead of modifying self.speed
     time.sleep(1)
     car.stop()
 
@@ -33,15 +32,15 @@ def avoid_obstacle():
     else:
         print("Turning right...")
         car.turn_right()
-    
+
     # Turn for a random duration
     time.sleep(random.uniform(0.5, 1.5))
     car.stop()
 
-    # Move forward again
+    # Move forward at normal speed
     print("Resuming forward motion...")
-    car.speed = 70
-    car.run_forward()
+    car.run_forward(70)  # Pass speed directly
+
 
 def main():
     """Continuously checks for obstacles and avoids them."""

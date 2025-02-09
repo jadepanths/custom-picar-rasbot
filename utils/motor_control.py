@@ -25,19 +25,19 @@ class RaspbotCar:
         except:
             print("I2C error: Ctrl_Car")
 
-    def run_forward(self):
-        """Move forward with a stronger initial kick"""
-        self.Ctrl_Car(1, 100, 1, 100)  # Stronger burst of 100% power
-        time.sleep(0.5)  # Extended kick duration
-        # speed = speed if speed is not None else self.speed
-        self.Ctrl_Car(1, self.speed, 1, self.speed)  # Return to normal speed
-
-    def run_backward(self):
-        """Move backward with a stronger initial kick"""
-        self.Ctrl_Car(0, 100, 0, 100)
+    def run_forward(self, speed=None):
+        """Move forward with a customizable speed (default: self.speed)"""
+        speed = speed if speed is not None else self.speed
+        self.Ctrl_Car(1, 100, 1, 100)  # Initial burst
         time.sleep(0.5)
-        # speed = speed if speed is not None else self.speed
-        self.Ctrl_Car(0, self.speed, 0, self.speed)
+        self.Ctrl_Car(1, speed, 1, speed)  # Use provided speed or default
+
+    def run_backward(self, speed=None):
+        """Move backward with a customizable speed (default: self.speed)"""
+        speed = speed if speed is not None else self.speed
+        self.Ctrl_Car(0, 100, 0, 100)  # Initial burst
+        time.sleep(0.5)
+        self.Ctrl_Car(0, speed, 0, speed)  # Use provided speed or default
 
     def turn_left(self):
         """Turn left with a stronger initial kick"""
