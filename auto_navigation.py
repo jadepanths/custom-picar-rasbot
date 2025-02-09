@@ -9,7 +9,7 @@ car = RaspbotCar()
 sensor = Ultrasonic()
 
 # Obstacle detection threshold (in cm)
-OBSTACLE_DISTANCE = 20  # Stop if obstacle is within 15 cm
+OBSTACLE_DISTANCE = 15  # Stop if obstacle is within 15 cm
 
 def avoid_obstacle():
     """Stops, reverses, and turns randomly to avoid obstacles."""
