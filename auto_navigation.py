@@ -20,7 +20,8 @@ def avoid_obstacle():
     time.sleep(0.5)
 
     # Back up slightly
-    car.run_backward(40)
+    car.speed = 40
+    car.run_backward()
     time.sleep(1)
     car.stop()
 
@@ -39,7 +40,8 @@ def avoid_obstacle():
 
     # Move forward again
     print("Resuming forward motion...")
-    car.run_forward(70)
+    car.speed = 70
+    car.run_forward()
 
 def main():
     """Continuously checks for obstacles and avoids them."""
