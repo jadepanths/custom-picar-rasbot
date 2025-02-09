@@ -28,27 +28,27 @@ class RaspbotCar:
     def run_forward(self, speed=None):
         """Move forward with a customizable speed (default: self.speed)"""
         speed = speed if speed is not None else self.speed
-        self.Ctrl_Car(1, 100, 1, 100)  # Initial burst
-        time.sleep(0.5)
+        # self.Ctrl_Car(1, 100, 1, 100)  # Initial burst
+        # time.sleep(0.5)
         self.Ctrl_Car(1, speed, 1, speed)  # Use provided speed or default
 
     def run_backward(self, speed=None):
         """Move backward with a customizable speed (default: self.speed)"""
         speed = speed if speed is not None else self.speed
-        self.Ctrl_Car(0, 100, 0, 100)  # Initial burst
-        time.sleep(0.5)
+        # self.Ctrl_Car(0, 100, 0, 100)  # Initial burst
+        # time.sleep(0.5)
         self.Ctrl_Car(0, speed, 0, speed)  # Use provided speed or default
 
     def turn_left(self):
         """Turn left with a stronger initial kick"""
-        self.Ctrl_Car(0, 100, 1, 100)
-        time.sleep(0.5)
+        # self.Ctrl_Car(0, 100, 1, 100)
+        # time.sleep(0.5)
         self.Ctrl_Car(0, self.speed, 1, self.speed)
 
     def turn_right(self):
         """Turn right with a stronger initial kick"""
-        self.Ctrl_Car(1, 100, 0, 100)
-        time.sleep(0.5)
+        # self.Ctrl_Car(1, 100, 0, 100)
+        # time.sleep(0.5)
         self.Ctrl_Car(1, self.speed, 0, self.speed)
 
 
