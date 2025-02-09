@@ -28,25 +28,25 @@ class RaspbotCar:
     def run_forward(self):
         """Move forward with a stronger initial kick"""
         self.Ctrl_Car(1, 100, 1, 100)  # Stronger burst of 100% power
-        time.sleep(0.3)  # Extended kick duration
+        time.sleep(0.5)  # Extended kick duration
         self.Ctrl_Car(1, self.speed, 1, self.speed)  # Return to normal speed
 
     def run_backward(self):
         """Move backward with a stronger initial kick"""
         self.Ctrl_Car(0, 100, 0, 100)
-        time.sleep(0.3)
+        time.sleep(0.5)
         self.Ctrl_Car(0, self.speed, 0, self.speed)
 
     def turn_left(self):
         """Turn left with a stronger initial kick"""
         self.Ctrl_Car(0, 100, 1, 100)
-        time.sleep(0.3)
+        time.sleep(0.5)
         self.Ctrl_Car(0, self.speed, 1, self.speed)
 
     def turn_right(self):
         """Turn right with a stronger initial kick"""
         self.Ctrl_Car(1, 100, 0, 100)
-        time.sleep(0.3)
+        time.sleep(0.5)
         self.Ctrl_Car(1, self.speed, 0, self.speed)
 
 
