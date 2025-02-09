@@ -40,3 +40,26 @@ def avoid_obstacle():
     # Move forward again
     print("Resuming forward motion...")
     car.run_forward()
+
+def main():
+    """Continuously checks for obstacles and avoids them."""
+    print("Starting autonomous navigation...")
+
+    car.run_forward()  # Start moving forward
+
+    try:
+        while True:
+            distance = sensor.get_distance()
+            print(f"Distance: {distance:.2f} cm")
+
+            if 0 < distance < OBSTACLE_DISTANCE:
+                avoid_obstacle()
+
+            time.sleep(0.1)  # Short delay to prevent excessive readings
+
+    except KeyboardInterrupt:
+        print("Stopping navigation...")
+        car.stop()
+
+if __name__ == "__main__":
+    main()
