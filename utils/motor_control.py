@@ -7,7 +7,7 @@ class RaspbotCar:
     def __init__(self):
         self._addr = 0x16  # Yahboom's I2C motor driver address
         self._device = smbus.SMBus(1)  # I2C bus 1
-        self.speed = 70  # Default speed
+        self.speed = 40  # Default speed
 
     def write_array(self, reg, data):
         """Send block data to I2C device"""
