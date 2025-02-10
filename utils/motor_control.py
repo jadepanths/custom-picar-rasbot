@@ -41,15 +41,15 @@ class RaspbotCar:
 
     def turn_left(self):
         """Turn left with a stronger initial kick"""
-        self.Ctrl_Car(0, 20, 1, 20)
+        self.Ctrl_Car(0, 150, 1, 150)
         time.sleep(0.1)
-        self.Ctrl_Car(0, self.speed, 1, self.speed)
+        self.Ctrl_Car(0, 30, 1, 30)
 
     def turn_right(self):
         """Turn right with a stronger initial kick"""
-        self.Ctrl_Car(1, 20, 0, 20)
+        self.Ctrl_Car(1, 150, 0, 150)
         time.sleep(0.1)
-        self.Ctrl_Car(1, self.speed, 0, self.speed)
+        self.Ctrl_Car(1, 30, 0, 30)
 
 
     def stop(self):
