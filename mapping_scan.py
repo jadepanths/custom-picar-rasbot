@@ -40,7 +40,7 @@ def update_map():
 
         # Rotate the car slightly (left turn)
         car.turn_left()
-        time.sleep(0.3)  # Adjust based on car's turn speed
+        time.sleep(0.2)  # Adjust based on car's turn speed
 
     car.stop()
     print("Mapping complete.")
