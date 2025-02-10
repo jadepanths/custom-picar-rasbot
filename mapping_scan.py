@@ -40,9 +40,19 @@ def update_map():
                 map_grid[y, x] = 1  # Mark obstacle
 
         # Rotate the car slightly (left turn)
+        car.speed = 10
         car.turn_left()
-        time.sleep(0.5)  # Adjust based on car's turn speed
-    
+        time.sleep(0.1)
+        car.speed = 20
+        car.turn_left()
+        time.sleep(0.1)
+        car.speed = 30
+        car.turn_left()
+        time.sleep(0.1)
+        car.speed = 40
+        car.turn_left()
+        time.sleep(0.1)
+        
     car.stop()
     print("Mapping complete.")
     np.save("environment_map.npy", map_grid)  # Save map for later use
