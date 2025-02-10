@@ -24,13 +24,13 @@ try:
         right_sensor = GPIO.input(AvoidSensorRight)
 
         if left_sensor == 0 and right_sensor == 0:
-            print("🚨 Obstacle detected on BOTH sides!")
+            print("Obstacle detected on BOTH sides!")
         elif left_sensor == 0:
-            print("⬅️ Obstacle detected on the LEFT!")
+            print("Obstacle detected on the LEFT!")
         elif right_sensor == 0:
-            print("➡️ Obstacle detected on the RIGHT!")
+            print("Obstacle detected on the RIGHT!")
         else:
-            print("✅ No obstacle detected.")
+            print("No obstacle detected.")
 
         time.sleep(0.5)  # Delay to prevent excessive prints
 
