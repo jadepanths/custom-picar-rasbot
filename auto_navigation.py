@@ -20,7 +20,7 @@ def avoid_obstacle():
     time.sleep(0.5)
 
     # Back up at reduced speed
-    car.run_backward(40)  # Pass speed directly instead of modifying self.speed
+    car.run_backward()  # Pass speed directly instead of modifying self.speed
     time.sleep(1)
     car.stop()
 
@@ -39,7 +39,7 @@ def avoid_obstacle():
 
     # Move forward at normal speed
     print("Resuming forward motion...")
-    car.run_forward(40)  # Pass speed directly
+    car.run_forward()  # Pass speed directly
 
 
 def main():
