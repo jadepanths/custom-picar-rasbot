@@ -1,8 +1,9 @@
 import time
 import random
+import RPi.GPIO as GPIO
 from utils.ultrasonic import Ultrasonic
 from utils.motor_control import RaspbotCar
-
+from utils.ir_sensor import detect_obstacle  # Import IR detection function
 
 # Initialize components
 car = RaspbotCar()
@@ -12,38 +13,48 @@ sensor = Ultrasonic()
 OBSTACLE_DISTANCE = 15  # Stop if obstacle is within 15 cm
 
 def avoid_obstacle():
-    """Stops, reverses, and turns randomly to avoid obstacles."""
+    """Stops, reverses, and turns away from obstacles based on IR sensor input."""
     print("Obstacle detected! Avoiding...")
 
     # Stop immediately
     car.stop()
     time.sleep(0.5)
 
-    # Back up at reduced speed
-    car.run_backward()  # Pass speed directly instead of modifying self.speed
-    time.sleep(1)
-    car.stop()
+    # Read IR sensor values
+    detection = detect_obstacle()
 
-    # Choose a random turn direction
-    turn_direction = random.choice(["left", "right"])
+    # Determine turn direction based on IR sensors
+    if detection == "both":
+        print("Obstacle detected on BOTH sides. Backing up and turning randomly.")
+        car.run_backward()
+        time.sleep(1)
+        car.stop()
+        turn_direction = random.choice(["left", "right"])
+    elif detection == "left":
+        print("Obstacle detected on LEFT. Turning right.")
+        turn_direction = "right"
+    elif detection == "right":
+        print("Obstacle detected on RIGHT. Turning left.")
+        turn_direction = "left"
+    else:
+        print("No IR detection, using ultrasonic sensor for avoidance.")
+        turn_direction = random.choice(["left", "right"])
+
+    # Perform turn
     if turn_direction == "left":
-        print("Turning left...")
         car.turn_left()
     else:
-        print("Turning right...")
         car.turn_right()
 
-    # Turn for a random duration
-    time.sleep(random.uniform(3, 4.5))
+    time.sleep(random.uniform(2, 4))
     car.stop()
 
-    # Move forward at normal speed
-    print("Resuming forward motion...")
-    car.run_forward()  # Pass speed directly
-
+    # Move forward again
+    print("Resuming forward motion.")
+    car.run_forward()
 
 def main():
-    """Continuously checks for obstacles and avoids them."""
+    """Continuously checks for obstacles and avoids them using IR and ultrasonic sensors."""
     print("Starting autonomous navigation...")
 
     car.run_forward()  # Start moving forward
@@ -51,9 +62,11 @@ def main():
     try:
         while True:
             distance = sensor.get_distance()
-            print(f"Distance: {distance:.2f} cm")
+            detection = detect_obstacle()
 
-            if 0 < distance < OBSTACLE_DISTANCE:
+            print(f"Distance: {distance:.2f} cm | IR Detection: {detection}")
+
+            if distance < OBSTACLE_DISTANCE or detection != "none":
                 avoid_obstacle()
 
             time.sleep(0.1)  # Short delay to prevent excessive readings
@@ -61,6 +74,7 @@ def main():
     except KeyboardInterrupt:
         print("Stopping navigation...")
         car.stop()
+        GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
