@@ -34,7 +34,7 @@ def avoid_obstacle():
         car.turn_right()
 
     # Turn for a random duration
-    time.sleep(random.uniform(0.5, 1.5))
+    time.sleep(random.uniform(3, 5))
     car.stop()
 
     # Move forward at normal speed
