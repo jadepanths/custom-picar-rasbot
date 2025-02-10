@@ -23,7 +23,7 @@ def update_map():
 
     for i in range(total_turns):
         car.stop()
-        time.sleep(0.5)
+        time.sleep(0.75)
 
         # Take distance reading
         distance = sensor.get_distance()
@@ -40,18 +40,8 @@ def update_map():
                 map_grid[y, x] = 1  # Mark obstacle
 
         # Rotate the car slightly (left turn)
-        car.speed = 10
         car.turn_left()
-        time.sleep(0.1)
-        car.speed = 20
-        car.turn_left()
-        time.sleep(0.1)
-        car.speed = 30
-        car.turn_left()
-        time.sleep(0.1)
-        car.speed = 40
-        car.turn_left()
-        time.sleep(0.1)
+        time.sleep(0.2)
         
     car.stop()
     print("Mapping complete.")
