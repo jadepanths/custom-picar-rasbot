@@ -54,4 +54,7 @@ def update_map():
         print("".join(["█" if cell == 1 else "." for cell in row]))  # Console-friendly display
 
 # Run the mapping process
+
+print("Updating Map Starts in 3 Seconds")
+time.sleep(3)
 update_map()
