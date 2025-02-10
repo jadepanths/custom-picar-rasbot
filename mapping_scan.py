@@ -31,10 +31,12 @@ def update_map():
         print(f"Angle: {angle}, Distance: {distance:.2f} cm")
 
         # Convert distance into grid coordinates
-        if 0 < distance < grid_size:
+        if 0 < distance < grid_size // 2:
             x = int(distance * math.cos(math.radians(angle))) + grid_size // 2
             y = int(distance * math.sin(math.radians(angle))) + grid_size // 2
-            map_grid[y, x] = 1  # Mark obstacle
+            
+            if 0 <= x < grid_size and 0 <= y < grid_size:
+                map_grid[y, x] = 1  # Mark obstacle
 
         # Rotate the car slightly (left turn)
         car.turn_left()
