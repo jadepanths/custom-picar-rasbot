@@ -15,7 +15,7 @@ map_grid = np.zeros((grid_size, grid_size), dtype=int)
 # Define scanning parameters
 angle_step = 15  # Degrees per turn step
 total_turns = 360 // angle_step  # Number of turns for full 360-degree scan
-car.speed = 150
+car.speed = 100
 
 def update_map():
     """Perform a full scan by rotating the car instead of using a servo."""
