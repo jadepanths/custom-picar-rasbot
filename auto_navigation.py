@@ -39,7 +39,7 @@ def avoid_obstacle():
 
     # Move forward at normal speed
     print("Resuming forward motion...")
-    car.run_forward(70)  # Pass speed directly
+    car.run_forward(40)  # Pass speed directly
 
 
 def main():
