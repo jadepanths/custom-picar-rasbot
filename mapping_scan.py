@@ -16,7 +16,21 @@ map_grid = np.zeros((grid_size, grid_size), dtype=int)
 # Define scanning parameters
 angle_step = 15  # Degrees per turn step
 total_turns = 360 // angle_step  # Number of turns for full 360-degree scan
-car.speed = 45
+car.speed = 43
+
+def get_average_distance(samples=5, delay=0.2):
+    """Take multiple ultrasonic readings and return the average distance."""
+    distances = []
+    
+    for _ in range(samples):
+        dist = sensor.get_distance()
+        if dist > 0:  # Only consider valid readings
+            distances.append(dist)
+        time.sleep(delay)  # Small delay between readings
+    
+    if distances:
+        return sum(distances) / len(distances)  # Compute average
+    return -1  # Return -1 if no valid readings
 
 def update_map():
     """Perform a full scan by rotating the car instead of using a servo."""
@@ -24,10 +38,10 @@ def update_map():
 
     for i in range(total_turns):
         car.stop()
-        time.sleep(0.75)
+        time.sleep(1)  # Pause for 1 second before measuring
 
-        # Take distance reading
-        distance = sensor.get_distance()
+        # Take multiple distance readings and compute average
+        distance = get_average_distance()
         angle = i * angle_step  # Calculate the angle of measurement
 
         print(f"Angle: {angle}, Distance: {distance:.2f} cm")
