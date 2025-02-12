@@ -70,7 +70,7 @@ def update_map():
     # Print the grid representation in the console
     print("\nFinal Mapped Grid:\n")
     for row in map_grid:
-        print("".join(["█" if cell == 1 else ("X" if cell == 2 else ".") for cell in row]))  # Console-friendly display
+        print("".join(["█" if cell == 1 else ("X" if cell == 2 else ".") for cell in row]))
 
 # Run the mapping process
 print("Updating Map Starts in 3 Seconds")
